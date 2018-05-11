@@ -21,5 +21,8 @@
 
 + (GPUImageFilterGroup *)testGroup1;
 
++ (GPUImageFilterGroup *)soul;
+
++ (GPUImageFilterGroup *)scale;
 
 @end

@@ -12,13 +12,9 @@
 @interface LMCameraManager () {
     CGRect _frame;
     CALayer *_focusLayer;
-
+    
 }
 @property (nonatomic , strong) NSArray *filters;
-
-@property (nonatomic , strong) GPUImageStillCamera *camera;
-
-@property (nonatomic , strong) GPUImageView *cameraScreen;
 
 @property (nonatomic , strong) GPUImageFilterGroup *currentGroup;
 
@@ -33,7 +29,7 @@
         _frame = frame;
         [self setup];
         [superview addSubview:self.cameraScreen];
-
+        
     }
     return self;
 }
@@ -41,7 +37,7 @@
 #pragma mark 初始化
 - (void)setup {
     [self setFlashMode:LMCameraManagerFlashModeAuto];
-
+    
 }
 
 #pragma mark 启用预览
@@ -111,10 +107,10 @@
                 });
                 [self performSelector:@selector(animationCamera) withObject:self afterDelay:0.2f];
             }
-
-        }
             
-            break;
+        }
+        
+        break;
         case LMCameraManagerDevicePositionFront: {
             if (self.camera.cameraPosition != AVCaptureDevicePositionFront) {
                 [self.camera pauseCameraCapture];
@@ -128,10 +124,10 @@
                 [self performSelector:@selector(animationCamera) withObject:self afterDelay:0.2f];
             }
         }
-
-            break;
+        
+        break;
         default:
-            break;
+        break;
     }
 }
 
@@ -160,23 +156,23 @@
             [self.camera.inputCamera setTorchMode:AVCaptureTorchModeAuto];
             [self.camera.inputCamera unlockForConfiguration];
         }
-            break;
+        break;
         case LMCameraManagerFlashModeOff: {
             [self.camera.inputCamera lockForConfiguration:nil];
             [self.camera.inputCamera setTorchMode:AVCaptureTorchModeOff];
             [self.camera.inputCamera unlockForConfiguration];
         }
-            
-            break;
+        
+        break;
         case LMCameraManagerFlashModeOn: {
             [self.camera.inputCamera lockForConfiguration:nil];
             [self.camera.inputCamera setTorchMode:AVCaptureTorchModeOn];
             [self.camera.inputCamera unlockForConfiguration];
         }
-            break;
-            
+        break;
+        
         default:
-            break;
+        break;
     }
 }
 
@@ -187,7 +183,7 @@
     CGPoint touchPoint = [tap locationInView:tap.view];
     [self layerAnimationWithPoint:touchPoint];
     touchPoint = CGPointMake(touchPoint.x / tap.view.bounds.size.width, touchPoint.y / tap.view.bounds.size.height);
-
+    
     if ([self.camera.inputCamera isFocusPointOfInterestSupported] && [self.camera.inputCamera isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
         NSError *error;
         if ([self.camera.inputCamera lockForConfiguration:&error]) {
@@ -244,9 +240,9 @@
         }else {
             success(processedImage);
         }
-
+        
     }];
-
+    
 }
 
 #pragma mark 添加滤镜组
@@ -273,7 +269,7 @@
 
 #pragma mark - AnimationDelegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-//    1秒钟延时
+    //    1秒钟延时
     [self performSelector:@selector(focusLayerNormal) withObject:self afterDelay:1.0f];
 }
 

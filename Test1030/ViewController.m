@@ -24,10 +24,7 @@
 
 #define downblackview_height 100.0f
 
-@interface ViewController () {
-    GPUImageStillCamera *videoCamera;
-    GPUImageView *view1;
-}
+@interface ViewController ()
 
 //    滤镜数组
 @property (nonatomic , strong) NSArray *filters;
@@ -62,8 +59,38 @@
     
     [self.filterChooserView addFilters:self.filters];
     [self.view addSubview:self.filterChooserView];
+    
+    __weak __typeof(self)weakSelf = self;
+    //    [self.cameraManager.camera capturePhotoAsImageProcessedUpToFilter:[LMCameraFilters scale] withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+    //        weakSelf.cameraManager.cameraScreen
+    //    }];
 }
 
+//- (void)renderCIImageWithCIImage:(CIImage *)ciImage{
+//
+//    CIContext *content = [CIContext contextWithOptions:nil];
+//    CGImageRef img = [content createCGImage:ciImage fromRect:[ciImage extent]];
+//    GPUImagePicture *picture = [[GPUImagePicture alloc] initWithImage:[[UIImage alloc] initWithCGImage:img]];
+//    CGImageRelease(img);
+//
+//    GpUImageScaleFilter *scaleFilter = [[GpUImageScaleFilter alloc] init];
+//
+//    _scaleCount += 0.005;
+//    if (_scaleCount >= 1.2) {
+//        _scaleCount = 1.1;
+//    }
+//
+//    scaleFilter.scale = _scaleCount;
+//
+//    [scaleFilter useNextFrameForImageCapture];
+//    [picture addTarget:scaleFilter];
+//
+//    [picture processImageWithCompletionHandler:^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.glkImageView.ciImage = [[CIImage alloc] initWithCGImage:[scaleFilter imageFromCurrentFramebuffer].CGImage];
+//        });
+//    }];
+//}
 
 #pragma mark 滤镜组
 - (NSArray *)filters {
@@ -72,21 +99,20 @@
 #warning  滤镜需要自定义，demo只是演示来用
         
         GPUImageFilterGroup *f1 = [LMCameraFilters normal];
-        [videoCamera addTarget:f1];
         
         GPUImageFilterGroup *f2 = [LMCameraFilters contrast];
-        [videoCamera addTarget:f2];
         
         GPUImageFilterGroup *f3 = [LMCameraFilters exposure];
-        [videoCamera addTarget:f3];
         
         GPUImageFilterGroup *f4 = [LMCameraFilters saturation];
-        [videoCamera addTarget:f4];
         
         GPUImageFilterGroup *f5 = [LMCameraFilters testGroup1];
-        [videoCamera addTarget:f5];
-
-        NSArray *arr = [NSArray arrayWithObjects:f1,f2,f3,f4,f5,nil];
+        
+        GPUImageFilterGroup *f6 = [LMCameraFilters soul];
+        
+        GPUImageFilterGroup *f7 = [LMCameraFilters scale];
+        
+        NSArray *arr = [NSArray arrayWithObjects:f1,f2,f3,f4,f5,f6, f7, nil];
         _filters = arr;
     }
     return _filters;
@@ -144,10 +170,10 @@
     if (!_cameraManager) {
         CGRect rect;
         float width = [UIScreen mainScreen].bounds.size.width;
-
+        
         if (IS_IPHONE4) rect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, width * iphone4_image_scale);
         else  rect = CGRectMake(0, 40, width, width * iphone6_image_scale);
-
+        
         LMCameraManager *cameraManager = [[LMCameraManager alloc] initWithFrame:rect superview:self.view];
         [cameraManager addFilters:self.filters];
         [cameraManager setfocusImage:[UIImage imageNamed:@"touch_focus_x"]];
@@ -220,26 +246,26 @@
     
     switch (button.tag) {
         case 1:
-            [self snapshot];
-            break;
+        [self snapshot];
+        break;
         case 2:
-            [self changeFlashMode:button];
-            break;
+        [self changeFlashMode:button];
+        break;
         case 3:
-            [self changeCameraPostion];
-            break;
-            
+        [self changeCameraPostion];
+        break;
+        
         default:
-            break;
+        break;
     }
 }
 
 #pragma mark 拍照
 
 - (void)snapshot {
-
+    
     [self.cameraManager snapshotSuccess:^(UIImage *image) {
-
+        
         NSLog(@"%@",image);
         
         
@@ -251,9 +277,9 @@
 #pragma mark 改变摄像头位置
 - (void)changeCameraPostion {
     if (self.cameraManager.position == LMCameraManagerDevicePositionBack)
-        self.cameraManager.position = LMCameraManagerDevicePositionFront;
+    self.cameraManager.position = LMCameraManagerDevicePositionFront;
     else
-        self.cameraManager.position = LMCameraManagerDevicePositionBack;
+    self.cameraManager.position = LMCameraManagerDevicePositionBack;
     
 }
 
@@ -261,20 +287,20 @@
 - (void)changeFlashMode:(UIButton *)button {
     switch (self.cameraManager.flashMode) {
         case LMCameraManagerFlashModeAuto:
-            self.cameraManager.flashMode = LMCameraManagerFlashModeOn;
-            [button setImage:[UIImage imageNamed:@"flashing_on"] forState:UIControlStateNormal];
-            break;
+        self.cameraManager.flashMode = LMCameraManagerFlashModeOn;
+        [button setImage:[UIImage imageNamed:@"flashing_on"] forState:UIControlStateNormal];
+        break;
         case LMCameraManagerFlashModeOff:
-            self.cameraManager.flashMode = LMCameraManagerFlashModeAuto;
-            [button setImage:[UIImage imageNamed:@"flashing_auto"] forState:UIControlStateNormal];
-            break;
+        self.cameraManager.flashMode = LMCameraManagerFlashModeAuto;
+        [button setImage:[UIImage imageNamed:@"flashing_auto"] forState:UIControlStateNormal];
+        break;
         case LMCameraManagerFlashModeOn:
-            self.cameraManager.flashMode = LMCameraManagerFlashModeOff;
-            [button setImage:[UIImage imageNamed:@"flashing_off"] forState:UIControlStateNormal];
-            break;
-            
+        self.cameraManager.flashMode = LMCameraManagerFlashModeOff;
+        [button setImage:[UIImage imageNamed:@"flashing_off"] forState:UIControlStateNormal];
+        break;
+        
         default:
-            break;
+        break;
     }
 }
 

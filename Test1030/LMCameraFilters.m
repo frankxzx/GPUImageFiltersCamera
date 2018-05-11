@@ -8,8 +8,33 @@
 
 #import "LMCameraFilters.h"
 #import "LMFliterGroup.h"
+#import "GPUImageSoulFilter.h"
+#import "GpUImageScaleFilter.h"
 
 @implementation LMCameraFilters
+
++ (GPUImageFilterGroup *)soul {
+    GPUImageSoulFilter *filter = [[GPUImageSoulFilter alloc] init]; //阴魂出鞘
+    filter.scale = 1.8;
+    filter.mix = 1.2;
+    GPUImageFilterGroup *group = [[GPUImageFilterGroup alloc] init];
+    [(GPUImageFilterGroup *) group setInitialFilters:[NSArray arrayWithObject: filter]];
+    [(GPUImageFilterGroup *) group setTerminalFilter:filter];
+    group.title = @"soul";
+    group.color = [UIColor blackColor];
+    return group;
+}
+
++ (GPUImageFilterGroup *)scale {
+    GpUImageScaleFilter *filter = [[GpUImageScaleFilter alloc] init]; //抖动
+    filter.scale = 1.5;
+    GPUImageFilterGroup *group = [[GPUImageFilterGroup alloc] init];
+    [(GPUImageFilterGroup *) group setInitialFilters:[NSArray arrayWithObject: filter]];
+    [(GPUImageFilterGroup *) group setTerminalFilter:filter];
+    group.title = @"scale";
+    group.color = [UIColor blackColor];
+    return group;
+}
 
 + (GPUImageFilterGroup *)normal {
     GPUImageFilter *filter = [[GPUImageFilter alloc] init]; //默认

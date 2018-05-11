@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GPUImage.h"
 
 @class GPUImageFilterGroup;
 /**
@@ -36,6 +37,10 @@ typedef NS_ENUM(NSInteger, LMCameraManagerDevicePosition) {
 @property (nonatomic , assign) LMCameraManagerDevicePosition position;
 //    闪光灯模式
 @property (nonatomic , assign) LMCameraManagerFlashMode flashMode;
+
+@property (nonatomic , strong) GPUImageStillCamera *camera;
+
+@property (nonatomic , strong) GPUImageView *cameraScreen;
 
 
 - (id)initWithFrame:(CGRect)frame superview:(UIView *)superview;

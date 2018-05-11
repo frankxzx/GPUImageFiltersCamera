@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0161791120A531220008BDC7 /* GpUImageScaleFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0161790E20A531210008BDC7 /* GpUImageScaleFilter.m */; };
+		0161791220A531220008BDC7 /* GPUImageSoulFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0161790F20A531210008BDC7 /* GPUImageSoulFilter.m */; };
 		99077E811BE9C465007FCFCD /* LMFilterChooserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99077E7E1BE9C465007FCFCD /* LMFilterChooserView.m */; };
 		99077E821BE9C465007FCFCD /* LMFilterChooserViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99077E801BE9C465007FCFCD /* LMFilterChooserViewCell.m */; };
 		99077E861BE9D3B2007FCFCD /* LMFliterGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 99077E851BE9D3B2007FCFCD /* LMFliterGroup.m */; };
@@ -207,6 +209,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0161790D20A531210008BDC7 /* GpUImageScaleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GpUImageScaleFilter.h; sourceTree = "<group>"; };
+		0161790E20A531210008BDC7 /* GpUImageScaleFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GpUImageScaleFilter.m; sourceTree = "<group>"; };
+		0161790F20A531210008BDC7 /* GPUImageSoulFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageSoulFilter.m; sourceTree = "<group>"; };
+		0161791020A531210008BDC7 /* GPUImageSoulFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageSoulFilter.h; sourceTree = "<group>"; };
 		99077E7D1BE9C465007FCFCD /* LMFilterChooserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFilterChooserView.h; sourceTree = "<group>"; };
 		99077E7E1BE9C465007FCFCD /* LMFilterChooserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMFilterChooserView.m; sourceTree = "<group>"; };
 		99077E7F1BE9C465007FCFCD /* LMFilterChooserViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFilterChooserViewCell.h; sourceTree = "<group>"; };
@@ -612,6 +618,10 @@
 		99077E831BE9D366007FCFCD /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				0161790D20A531210008BDC7 /* GpUImageScaleFilter.h */,
+				0161790E20A531210008BDC7 /* GpUImageScaleFilter.m */,
+				0161791020A531210008BDC7 /* GPUImageSoulFilter.h */,
+				0161790F20A531210008BDC7 /* GPUImageSoulFilter.m */,
 				99E240F21BE86D8500CF2794 /* LMCameraFilters.h */,
 				99E240F31BE86D8500CF2794 /* LMCameraFilters.m */,
 				99077E841BE9D3B2007FCFCD /* LMFliterGroup.h */,
@@ -1107,6 +1117,7 @@
 				TargetAttributes = {
 					99E0A7721BE3346A0086F7D1 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = JJ6D8L57PH;
 					};
 					99E0A78B1BE3346B0086F7D1 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -1229,6 +1240,7 @@
 				99E246E81BE8773700CF2794 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				99E246AB1BE8773700CF2794 /* GPUImageLowPassFilter.m in Sources */,
 				99E246831BE8773700CF2794 /* GPUImageExclusionBlendFilter.m in Sources */,
+				0161791220A531220008BDC7 /* GPUImageSoulFilter.m in Sources */,
 				99E2466F1BE8773700CF2794 /* GPUImageClosingFilter.m in Sources */,
 				99E246631BE8773700CF2794 /* GPUImageAmatorkaFilter.m in Sources */,
 				99E246DA1BE8773700CF2794 /* GPUImageSmoothToonFilter.m in Sources */,
@@ -1274,6 +1286,7 @@
 				99E246C11BE8773700CF2794 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				99E0A7781BE3346A0086F7D1 /* main.m in Sources */,
 				99E246871BE8773700CF2794 /* GPUImageFilter.m in Sources */,
+				0161791120A531220008BDC7 /* GpUImageScaleFilter.m in Sources */,
 				99E246F41BE8773700CF2794 /* GPUImageUnsharpMaskFilter.m in Sources */,
 				99E246AE1BE8773700CF2794 /* GPUImageLuminosity.m in Sources */,
 				99E246771BE8773700CF2794 /* GPUImageCropFilter.m in Sources */,
@@ -1461,6 +1474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JJ6D8L57PH;
 				INFOPLIST_FILE = Test1030/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1473,6 +1487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JJ6D8L57PH;
 				INFOPLIST_FILE = Test1030/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
